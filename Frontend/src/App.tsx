@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { ThemeProvider, createTheme, CssBaseline, Box, AppBar, Toolbar, Typography, Button } from '@mui/material';
 import Dashboard from './components/Dashboard';
 import DSOCalculator from './components/DSOCalculator';
-import AIReviewTool from './components/AIReviewTool';
+import FinancialReviewTool from './components/FinancialReviewTool';
 import ModuleViewer from './components/ModuleViewer';
 
 const theme = createTheme({
@@ -67,7 +67,7 @@ const App: React.FC = () => {
             <Routes>
               <Route path="/" element={<Dashboard />} />
               <Route path="/tools/dso" element={<DSOCalculator />} />
-              <Route path="/tools/ai-review" element={<AIReviewTool />} />
+              <Route path="/tools/ai-review" element={<FinancialReviewTool />} />
               <Route path="/module/:id" element={<ModuleViewer />} />
             </Routes>
           </Box>
