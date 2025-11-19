@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Box, Container, Typography, TextField, Button, Alert, Divider, Table, TableBody, TableCell, TableHead, TableRow } from '@mui/material';
+import { Box, Container, Typography, TextField, Button, Alert, Divider, Table, TableBody, TableCell, TableHead, TableRow, FormControl, InputLabel, Select, MenuItem } from '@mui/material';
 import Papa from 'papaparse';
 import * as XLSX from 'xlsx';
 
@@ -68,6 +68,7 @@ const FinancialReviewTool: React.FC = () => {
   const [indicators, setIndicators] = useState<any[]>([]);
   const [parsedTable, setParsedTable] = useState<any[] | null>(null);
   const [headersMap, setHeadersMap] = useState<Record<string,string|null> | null>(null);
+  const [columnMap, setColumnMap] = useState<Record<string,string|null> | null>(null);
 
   const handleFile = (file: File | null) => {
     if (!file) return;
@@ -181,6 +182,36 @@ const FinancialReviewTool: React.FC = () => {
     setCashFlow(Object.keys(mappedCash).length ? mappedCash : null);
   };
 
+  const applyManualMapping = () => {
+    if (!parsedTable || !columnMap) return;
+    const row = parsedTable[0];
+    const mappedBalance: StatementData = {};
+    const mappedIncome: StatementData = {};
+    const mappedCash: StatementData = {};
+    Object.entries(columnMap).forEach(([canonical, header]) => {
+      if (!header) return;
+      const val = row[header];
+      if (val === undefined || val === null) return;
+      switch (canonical) {
+        case 'Accounts Receivable': mappedBalance['Accounts Receivable'] = Number(val); break;
+        case 'Inventory': mappedBalance['Inventory'] = Number(val); break;
+        case 'Total Assets': mappedBalance['Total Assets'] = Number(val); break;
+        case 'Total Liabilities': mappedBalance['Total Liabilities'] = Number(val); break;
+        case 'Total Equity': mappedBalance['Total Equity'] = Number(val); break;
+        case 'Revenue': mappedIncome['Revenue'] = Number(val); break;
+        case 'Net Income': mappedIncome['Net Income'] = Number(val); break;
+        case 'COGS': mappedIncome['COGS'] = Number(val); break;
+        case 'Net cash from operating activities': mappedCash['Net cash from operating activities'] = Number(val); break;
+        case 'Short Term Debt': mappedBalance['Short Term Debt'] = Number(val); break;
+        case 'Long Term Debt': mappedBalance['Long Term Debt'] = Number(val); break;
+        default: break;
+      }
+    });
+    setBalanceSheet(Object.keys(mappedBalance).length ? mappedBalance : null);
+    setIncomeStatement(Object.keys(mappedIncome).length ? mappedIncome : null);
+    setCashFlow(Object.keys(mappedCash).length ? mappedCash : null);
+  };
+
   return (
     <Container maxWidth="md" sx={{ py: 4 }}>
       <Typography variant="h5" gutterBottom>AI-Assisted Financial Review (prototype)</Typography>
@@ -222,6 +253,36 @@ const FinancialReviewTool: React.FC = () => {
               ))}
             </TableBody>
           </Table>
+        </Box>
+      )}
+
+      {parsedTable && (
+        <Box sx={{ mb: 2, p: 2, border: '1px dashed #ddd', borderRadius: 1 }}>
+          <Typography variant="subtitle2" sx={{ mb: 1 }}>Manual Column Mapping (choose which parsed column maps to each canonical field)</Typography>
+          <Box sx={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 1 }}>
+            {[
+              'Accounts Receivable','Revenue','Net Income','Net cash from operating activities','Inventory','COGS','Total Assets','Total Liabilities','Total Equity','Short Term Debt','Long Term Debt'
+            ].map((canonical) => (
+              <FormControl size="small" fullWidth key={canonical}>
+                <InputLabel>{canonical}</InputLabel>
+                <Select
+                  value={(columnMap && columnMap[canonical]) || ''}
+                  label={canonical}
+                  onChange={(e) => setColumnMap((prev) => ({ ...(prev || {}), [canonical]: e.target.value || null }))}
+                >
+                  <MenuItem value="">— none —</MenuItem>
+                  {Object.keys(parsedTable[0] || {}).map((h) => (
+                    <MenuItem key={h} value={h}>{h}</MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+            ))}
+          </Box>
+
+          <Box sx={{ display: 'flex', gap: 1, mt: 2 }}>
+            <Button variant="contained" onClick={applyManualMapping} disabled={!columnMap}>Apply mapping</Button>
+            <Button variant="outlined" onClick={()=>setColumnMap(null)}>Clear mapping</Button>
+          </Box>
         </Box>
       )}
 
