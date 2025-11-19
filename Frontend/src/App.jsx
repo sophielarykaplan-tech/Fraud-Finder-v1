@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Button from '@mui/material/Button';
+import Dashboard from './components/Dashboard';
 import CssBaseline from '@mui/material/CssBaseline';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 
@@ -85,6 +86,9 @@ export default function App() {
       <pre style={{ marginTop: 24, background: "#f6f8fa", padding: 12 }}>
         {result ? JSON.stringify(result, null, 2) : "Results will appear here."}
       </pre>
+
+      {/* Simple integration: render Dashboard below the calculator */}
+      <Dashboard />
       </div>
     </ThemeProvider>
   );
