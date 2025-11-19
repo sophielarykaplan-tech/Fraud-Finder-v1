@@ -15,36 +15,36 @@ const Dashboard: React.FC = () => {
         Dashboard
       </Typography>
 
-      <Grid container spacing={2}>
-        <Grid item xs={12} md={4}>
-          <Card>
-            <CardContent>
-              <Typography variant="h6">Overview</Typography>
-              <Typography variant="body2" color="text.secondary">
-                Quick summary and KPIs go here.
-              </Typography>
-            </CardContent>
-          </Card>
-        </Grid>
-
-        <Grid item xs={12} md={4}>
-          <Paper sx={{ p: 2 }}>
-            <Typography variant="h6">Activity</Typography>
+      <Box
+        sx={{
+          display: 'grid',
+          gap: 2,
+          gridTemplateColumns: { xs: '1fr', md: 'repeat(3, 1fr)' },
+        }}
+      >
+        <Card>
+          <CardContent>
+            <Typography variant="h6">Overview</Typography>
             <Typography variant="body2" color="text.secondary">
-              Recent calculations and checks.
+              Quick summary and KPIs go here.
             </Typography>
-          </Paper>
-        </Grid>
+          </CardContent>
+        </Card>
 
-        <Grid item xs={12} md={4}>
-          <Paper sx={{ p: 2 }}>
-            <Typography variant="h6">Actions</Typography>
-            <Typography variant="body2" color="text.secondary">
-              Export, save, and next steps.
-            </Typography>
-          </Paper>
-        </Grid>
-      </Grid>
+        <Paper sx={{ p: 2 }}>
+          <Typography variant="h6">Activity</Typography>
+          <Typography variant="body2" color="text.secondary">
+            Recent calculations and checks.
+          </Typography>
+        </Paper>
+
+        <Paper sx={{ p: 2 }}>
+          <Typography variant="h6">Actions</Typography>
+          <Typography variant="body2" color="text.secondary">
+            Export, save, and next steps.
+          </Typography>
+        </Paper>
+      </Box>
     </Box>
   );
 };
