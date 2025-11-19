@@ -1,13 +1,52 @@
-import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react';
-import path from 'path';
+import React from 'react';
+import {
+  Box,
+  Typography,
+  Grid,
+  Card,
+  CardContent,
+  Paper,
+} from '@mui/material';
 
-export default defineConfig({
-  plugins: [react()],
-  resolve: {
-    alias: {
-      // example: map '@mui/material' -> a local folder
-      '@mui/material': path.resolve(__dirname, 'vendor/mui/material')
-    }
-  }
-});
+const Dashboard: React.FC = () => {
+  return (
+    <Box sx={{ p: 3 }}>
+      <Typography variant="h4" gutterBottom>
+        Dashboard
+      </Typography>
+
+      <Grid container spacing={2}>
+        <Grid item xs={12} md={4}>
+          <Card>
+            <CardContent>
+              <Typography variant="h6">Overview</Typography>
+              <Typography variant="body2" color="text.secondary">
+                Quick summary and KPIs go here.
+              </Typography>
+            </CardContent>
+          </Card>
+        </Grid>
+
+        <Grid item xs={12} md={4}>
+          <Paper sx={{ p: 2 }}>
+            <Typography variant="h6">Activity</Typography>
+            <Typography variant="body2" color="text.secondary">
+              Recent calculations and checks.
+            </Typography>
+          </Paper>
+        </Grid>
+
+        <Grid item xs={12} md={4}>
+          <Paper sx={{ p: 2 }}>
+            <Typography variant="h6">Actions</Typography>
+            <Typography variant="body2" color="text.secondary">
+              Export, save, and next steps.
+            </Typography>
+          </Paper>
+        </Grid>
+      </Grid>
+    </Box>
+  );
+};
+
+export default Dashboard;
