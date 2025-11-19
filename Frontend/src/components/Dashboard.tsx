@@ -16,7 +16,7 @@ const Dashboard: React.FC = () => {
       </Typography>
 
       <Grid container spacing={2}>
-        <Grid {...({ item: true, component: 'div', xs: 12, md: 4 } as any)}>
+        <Grid xs={12} md={4} component="div">
           <Card>
             <CardContent>
               <Typography variant="h6">Overview</Typography>
@@ -27,7 +27,7 @@ const Dashboard: React.FC = () => {
           </Card>
         </Grid>
 
-        <Grid {...({ item: true, component: 'div', xs: 12, md: 4 } as any)}>
+        <Grid xs={12} md={4} component="div">
           <Paper sx={{ p: 2 }}>
             <Typography variant="h6">Activity</Typography>
             <Typography variant="body2" color="text.secondary">
@@ -36,7 +36,7 @@ const Dashboard: React.FC = () => {
           </Paper>
         </Grid>
 
-        <Grid {...({ item: true, component: 'div', xs: 12, md: 4 } as any)}>
+        <Grid xs={12} md={4} component="div">
           <Paper sx={{ p: 2 }}>
             <Typography variant="h6">Actions</Typography>
             <Typography variant="body2" color="text.secondary">
