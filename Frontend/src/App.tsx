@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { ThemeProvider, createTheme, CssBaseline, Box, AppBar, Toolbar, Typography, Button } from '@mui/material';
 import Dashboard from './components/Dashboard';
 import DSOCalculator from './components/DSOCalculator';
-import AIReviewTool from '../Frontend/src/components/AIReviewTool';
+import AIReviewTool from './components/AIReviewTool';
 import ModuleViewer from './components/ModuleViewer';
 
 const theme = createTheme({

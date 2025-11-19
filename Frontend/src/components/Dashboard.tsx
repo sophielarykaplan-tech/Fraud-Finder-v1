@@ -15,8 +15,8 @@ const Dashboard: React.FC = () => {
         Dashboard
       </Typography>
 
-      <Grid container spacing={2}>
-        <Grid xs={12} md={4} component="div">
+      <Box sx={{ display: 'flex', gap: 2, flexWrap: 'wrap' }}>
+        <Box sx={{ flex: '1 1 30%' }} component="div">
           <Card>
             <CardContent>
               <Typography variant="h6">Overview</Typography>
@@ -25,26 +25,26 @@ const Dashboard: React.FC = () => {
               </Typography>
             </CardContent>
           </Card>
-        </Grid>
+        </Box>
 
-        <Grid xs={12} md={4} component="div">
+        <Box sx={{ flex: '1 1 30%' }} component="div">
           <Paper sx={{ p: 2 }}>
             <Typography variant="h6">Activity</Typography>
             <Typography variant="body2" color="text.secondary">
               Recent calculations and checks.
             </Typography>
           </Paper>
-        </Grid>
+        </Box>
 
-        <Grid xs={12} md={4} component="div">
+        <Box sx={{ flex: '1 1 30%' }} component="div">
           <Paper sx={{ p: 2 }}>
             <Typography variant="h6">Actions</Typography>
             <Typography variant="body2" color="text.secondary">
               Export, save, and next steps.
             </Typography>
           </Paper>
-        </Grid>
-      </Grid>
+        </Box>
+      </Box>
     </Box>
   );
 };

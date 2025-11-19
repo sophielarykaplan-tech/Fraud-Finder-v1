@@ -75,9 +75,9 @@ const ModuleViewer: React.FC = () => {
         {module.title}
       </Typography>
 
-      <Grid container spacing={3}>
+      <Box sx={{ display: 'flex', gap: 3, flexWrap: 'wrap' }}>
         {/* Main Content */}
-        <Grid item xs={12} md={8}>
+        <Box sx={{ flex: '1 1 66%' }}>
           {module.sections.map((section, index) => (
             <Card key={index} sx={{ mb: 3 }}>
               <CardContent>
@@ -97,10 +97,24 @@ const ModuleViewer: React.FC = () => {
               Next →
             </Button>
           </Box>
-        </Grid>
+        </Box>
 
         {/* Sidebar */}
-        <Grid item xs={12} md={4}>
+        <Box sx={{ flex: '1 1 33%' }}>
           <Card sx={{ mb: 3, position: 'sticky', top: 20 }}>
             <CardContent>
-              <Typography variant="h6" gutterBottom sx={{ fontWeight: 'bold' }}></Typography>
+              <Typography variant="h6" gutterBottom sx={{ fontWeight: 'bold' }}>Contents</Typography>
+              <Typography variant="body2" color="text.secondary">
+                {module.sections.map((s, i) => (
+                  <div key={i}>{i + 1}. {s.heading}</div>
+                ))}
+              </Typography>
+            </CardContent>
+          </Card>
+        </Box>
+      </Box>
+      </Container>
+    );
+  };
+
+  export default ModuleViewer;
