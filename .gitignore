@@ -1,0 +1,7 @@
+/node_modules/
+/Frontend/node_modules/
+/Frontend/.vite/
+/Frontend/.package-lock.json
+/Frontend/node_modules/.vite/
+*.log
+.DS_Store

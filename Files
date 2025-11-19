@@ -1,0 +1,26 @@
+spot-the-red-flags-demo/
+├── frontend/
+│   ├── node_modules/          (auto-created, ~500MB)
+│   ├── public/
+│   ├── src/
+│   │   ├── components/
+│   │   ├── pages/
+│   │   ├── App.tsx
+│   │   └── index.tsx
+│   ├── package.json
+│   └── tsconfig.json
+│
+├── backend/
+│   ├── venv/                  (auto-created, ~300MB)
+│   ├── main.py
+│   ├── requirements.txt
+│   └── .env
+│
+├── database/
+│   └── schema.sql
+│
+├── docs/
+│   └── README.md
+│
+├── .gitignore
+└── README.md
