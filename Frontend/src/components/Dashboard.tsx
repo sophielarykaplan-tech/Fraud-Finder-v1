@@ -2,11 +2,11 @@ import React from 'react';
 import {
   Box,
   Typography,
+  Grid,
   Card,
   CardContent,
   Paper,
 } from '@mui/material';
-import Grid from '@mui/material/Unstable_Grid2';
 
 const Dashboard: React.FC = () => {
   return (
@@ -16,7 +16,7 @@ const Dashboard: React.FC = () => {
       </Typography>
 
       <Grid container spacing={2}>
-        <Grid xs={12} md={4}>
+        <Grid item xs={12} md={4}>
           <Card>
             <CardContent>
               <Typography variant="h6">Overview</Typography>
@@ -27,7 +27,7 @@ const Dashboard: React.FC = () => {
           </Card>
         </Grid>
 
-        <Grid xs={12} md={4}>
+        <Grid item xs={12} md={4}>
           <Paper sx={{ p: 2 }}>
             <Typography variant="h6">Activity</Typography>
             <Typography variant="body2" color="text.secondary">
@@ -36,7 +36,7 @@ const Dashboard: React.FC = () => {
           </Paper>
         </Grid>
 
-        <Grid xs={12} md={4}>
+        <Grid item xs={12} md={4}>
           <Paper sx={{ p: 2 }}>
             <Typography variant="h6">Actions</Typography>
             <Typography variant="body2" color="text.secondary">
