@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Button from '@mui/material/Button';
 
 export default function App() {
   const [accountsReceivable, setAccountsReceivable] = useState(100000);
@@ -70,6 +71,9 @@ export default function App() {
         <button type="submit" disabled={loading} style={{ padding: "8px 16px" }}>
           {loading ? "Calculating..." : "Calculate DSO"}
         </button>
+        <div style={{ marginTop: 12 }}>
+          <Button variant="contained" color="primary">Material UI Button</Button>
+        </div>
       </form>
 
       <pre style={{ marginTop: 24, background: "#f6f8fa", padding: 12 }}>
