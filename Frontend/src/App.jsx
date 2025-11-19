@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import Button from '@mui/material/Button';
+import CssBaseline from '@mui/material/CssBaseline';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
 
 export default function App() {
   const [accountsReceivable, setAccountsReceivable] = useState(100000);
@@ -30,8 +32,12 @@ export default function App() {
     }
   }
 
+  const theme = createTheme();
+
   return (
-    <div style={{ fontFamily: "system-ui, sans-serif", padding: 24 }}>
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <div style={{ fontFamily: "system-ui, sans-serif", padding: 24 }}>
       <h1>Spot the Red Flags — DSO Calculator</h1>
       <form onSubmit={submit} style={{ maxWidth: 600 }}>
         <label>
@@ -79,6 +85,7 @@ export default function App() {
       <pre style={{ marginTop: 24, background: "#f6f8fa", padding: 12 }}>
         {result ? JSON.stringify(result, null, 2) : "Results will appear here."}
       </pre>
-    </div>
+      </div>
+    </ThemeProvider>
   );
 }
