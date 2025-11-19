@@ -2,11 +2,11 @@ import React from 'react';
 import {
   Box,
   Typography,
-  Grid,
   Card,
   CardContent,
   Paper,
 } from '@mui/material';
+import Grid from '@mui/material/Unstable_Grid2';
 
 const Dashboard: React.FC = () => {
   return (
@@ -15,36 +15,36 @@ const Dashboard: React.FC = () => {
         Dashboard
       </Typography>
 
-      <Box
-        sx={{
-          display: 'grid',
-          gap: 2,
-          gridTemplateColumns: { xs: '1fr', md: 'repeat(3, 1fr)' },
-        }}
-      >
-        <Card>
-          <CardContent>
-            <Typography variant="h6">Overview</Typography>
+      <Grid container spacing={2}>
+        <Grid xs={12} md={4}>
+          <Card>
+            <CardContent>
+              <Typography variant="h6">Overview</Typography>
+              <Typography variant="body2" color="text.secondary">
+                Quick summary and KPIs go here.
+              </Typography>
+            </CardContent>
+          </Card>
+        </Grid>
+
+        <Grid xs={12} md={4}>
+          <Paper sx={{ p: 2 }}>
+            <Typography variant="h6">Activity</Typography>
             <Typography variant="body2" color="text.secondary">
-              Quick summary and KPIs go here.
+              Recent calculations and checks.
             </Typography>
-          </CardContent>
-        </Card>
+          </Paper>
+        </Grid>
 
-        <Paper sx={{ p: 2 }}>
-          <Typography variant="h6">Activity</Typography>
-          <Typography variant="body2" color="text.secondary">
-            Recent calculations and checks.
-          </Typography>
-        </Paper>
-
-        <Paper sx={{ p: 2 }}>
-          <Typography variant="h6">Actions</Typography>
-          <Typography variant="body2" color="text.secondary">
-            Export, save, and next steps.
-          </Typography>
-        </Paper>
-      </Box>
+        <Grid xs={12} md={4}>
+          <Paper sx={{ p: 2 }}>
+            <Typography variant="h6">Actions</Typography>
+            <Typography variant="body2" color="text.secondary">
+              Export, save, and next steps.
+            </Typography>
+          </Paper>
+        </Grid>
+      </Grid>
     </Box>
   );
 };
